@@ -1,0 +1,29 @@
+version: "3.3"
+
+services:
+
+  metricbeat1:
+    image: docker.elastic.co/beats/metricbeat:7.17.0
+    # https://github.com/docker/swarmkit/issues/1951
+    hostname: metricbeat1
+    container_name: metricbeat1
+    user: root
+    # networks:
+    #   - elastic
+    # configs:
+    #   - source: ./metricbeat.yml
+    #     target: /usr/share/metricbeat/metricbeat.yml
+    volumes:
+      - /proc:/hostfs/proc:ro
+      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      - /:/hostfs:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./metricbeat_data:/usr/share/metricbeat/data
+      - ./metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro
+    environment:
+      - ELASTICSEARCH_HOST=10.51.96.67
+      - ELASTICSEARCH_USERNAME='elastic'
+      - ELASTICSEARCH_PASSWORD='pranay'
+      #- KIBANA_HOST=${KIBANA_HOST:-node1}
+    # disable strict permission checks
+    command: ["--strict.perms=false", "-system.hostfs=/hostfs"]
