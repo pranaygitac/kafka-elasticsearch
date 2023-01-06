@@ -11,7 +11,7 @@ services:
           read_only: true
         - type: bind
           source: ./data 
-          target: /usr/share/logstash/data
+          target: /usr/share/logstash/data/logstash1
         - type: bind
           source: ./logstash.yml
           target: /usr/share/logstash/config/logstash.yml
@@ -21,4 +21,53 @@ services:
         - 5044:5044  
       environment:
         LS_JAVA_OPTS: -Xms256m -Xmx256m    
+        LOGSTASH_HOST_NAME: logstash1
+
+    logstash2:
+      hostname: logstash2    
+      image: docker.elastic.co/logstash/logstash:7.17.0
+      container_name: logstash2
+      volumes:
+        - type: bind
+          source: ./pipeline
+          target: /usr/share/logstash/pipeline
+          read_only: true
+        - type: bind
+          source: ./data 
+          target: /usr/share/logstash/data/logstash2
+        - type: bind
+          source: ./logstash.yml
+          target: /usr/share/logstash/config/logstash.yml
+          read_only: true
+      ports:
+        - 9603:9600
+        - 5046:5044  
+      environment:
+        LS_JAVA_OPTS: -Xms256m -Xmx256m    
+        LOGSTASH_HOST_NAME: logstash2
+
+    logstash3:
+      hostname: logstash3    
+      image: docker.elastic.co/logstash/logstash:7.17.0
+      container_name: logstash3
+      volumes:
+        - type: bind
+          source: ./pipeline
+          target: /usr/share/logstash/pipeline
+          read_only: true
+        - type: bind
+          source: ./data 
+          target: /usr/share/logstash/data/logstash3
+        - type: bind
+          source: ./logstash.yml
+          target: /usr/share/logstash/config/logstash.yml
+          read_only: true
+      ports:
+        - 9605:9600
+        - 5047:5044  
+      environment:
+        LS_JAVA_OPTS: -Xms256m -Xmx256m    
+        LOGSTASH_HOST_NAME: logstash3    
+
+
 

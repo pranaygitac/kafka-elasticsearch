@@ -1,4 +1,4 @@
 http.host: "0.0.0.0"
 pipeline.ecs_compatibility: disabled
-node.name: logstash1
+node.name: ${LOGSTASH_HOST_NAME}
 
