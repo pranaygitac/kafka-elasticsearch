@@ -1,0 +1,53 @@
+version: "3.3"
+
+services:
+
+  filebeat1:
+    image: docker.elastic.co/beats/filebeat:7.17.0
+    # https://github.com/docker/swarmkit/issues/1951
+    hostname: filebeat1
+    container_name: filebeat1
+    user: root
+    # networks:
+    #   - elastic
+    # configs:
+    #   - source: ./metricbeat.yml
+    #     target: /usr/share/metricbeat/metricbeat.yml
+    volumes:
+      - /var/log/:/var/log/:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      # This is needed for filebeat to load container log path as specified in filebeat.yml
+      - /var/lib/docker/containers/:/var/lib/docker/containers/:ro
+      - ./filebeat_data:/usr/share/filebeat/data
+      - ./filebeat_ssl.yml:/usr/share/filebeat/filebeat.yml:ro
+    environment:
+      - ELASTICSEARCH_HOST=10.51.96.67
+      - ELASTICSEARCH_USERNAME='elastic'
+      - ELASTICSEARCH_PASSWORD='pranay'
+      #- KIBANA_HOST=${KIBANA_HOST:-node1}
+    # disable strict permission checks
+    command: ["--strict.perms=false"]
+
+  logstash4:
+    hostname: logstash4    
+    image: docker.elastic.co/logstash/logstash:7.17.0
+    container_name: logstash4
+    volumes:
+      - type: bind
+        source: ./pipeline
+        target: /usr/share/logstash/pipeline
+        read_only: true
+      - type: bind
+        source: ./logstash_data 
+        target: /usr/share/logstash/data
+      - type: bind
+        source: ./logstash_ssl.yml
+        target: /usr/share/logstash/config/logstash.yml
+        read_only: true
+    ports:
+      - 9606:9600
+      - 5048:5044 
+      - 5049:5045 
+    environment:
+      LS_JAVA_OPTS: -Xms256m -Xmx256m    
+      LOGSTASH_HOST_NAME: logstash4      

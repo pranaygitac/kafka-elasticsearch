@@ -10,8 +10,8 @@ services:
           target: /usr/share/logstash/pipeline
           read_only: true
         - type: bind
-          source: ./data 
-          target: /usr/share/logstash/data/logstash1
+          source: ./data/logstash1 
+          target: /usr/share/logstash/data
         - type: bind
           source: ./logstash.yml
           target: /usr/share/logstash/config/logstash.yml
@@ -33,8 +33,8 @@ services:
           target: /usr/share/logstash/pipeline
           read_only: true
         - type: bind
-          source: ./data 
-          target: /usr/share/logstash/data/logstash2
+          source: ./data/logstash2 
+          target: /usr/share/logstash/data
         - type: bind
           source: ./logstash.yml
           target: /usr/share/logstash/config/logstash.yml
@@ -56,8 +56,8 @@ services:
           target: /usr/share/logstash/pipeline
           read_only: true
         - type: bind
-          source: ./data 
-          target: /usr/share/logstash/data/logstash3
+          source: ./data/logstash3 
+          target: /usr/share/logstash/data
         - type: bind
           source: ./logstash.yml
           target: /usr/share/logstash/config/logstash.yml
