@@ -101,7 +101,7 @@ output.logstash:
   #proxy_use_local_resolver: false
 
   # Use SSL settings for HTTPS.
-  #ssl.enabled: true
+  ssl.enabled: true
 
   # Controls the verification of certificates. Valid values are:
   # * full, which verifies that the provided certificate is signed by a trusted
@@ -126,13 +126,13 @@ output.logstash:
   #ssl.supported_protocols: [TLSv1.1, TLSv1.2, TLSv1.3]
 
   # List of root certificates for HTTPS server verifications
-  #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
+  ssl.certificate_authorities: ["/usr/share/filebeat/cert/logstash.crt"]
 
   # Certificate for SSL client authentication
-  #ssl.certificate: "/etc/pki/client/cert.pem"
+  #ssl.certificate: "/usr/share/filebeat/certs/logstash.crt"
 
   # Client certificate key
-  #ssl.key: "/etc/pki/client/cert.key"
+  #ssl.key: "/usr/share/filebeat/certs/logstash.pkcs8.key"
 
   # Optional passphrase for decrypting the certificate key.
   #ssl.key_passphrase: ''

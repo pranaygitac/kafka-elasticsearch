@@ -20,6 +20,10 @@ services:
       - /var/lib/docker/containers/:/var/lib/docker/containers/:ro
       - ./filebeat_data:/usr/share/filebeat/data
       - ./filebeat_ssl.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./cert/:/usr/share/filebeat/cert/:ro
+      # - ./cert/filebeat/logstash-ca.crt:/usr/share/filebeat/certs/logstash-ca.crt:ro
+      # - ./cert/filebeat/logstash.crt:/usr/share/filebeat/certs/logstash.crt:ro
+      # - ./cert/filebeat/logstash.pkcs8.key:/usr/share/filebeat/certs/logstash.pkcs8.key
     environment:
       - ELASTICSEARCH_HOST=10.51.96.67
       - ELASTICSEARCH_USERNAME='elastic'
@@ -44,6 +48,22 @@ services:
         source: ./logstash_ssl.yml
         target: /usr/share/logstash/config/logstash.yml
         read_only: true
+      - type: bind
+        source: ./cert
+        target: /usr/share/logstash/cert
+        read_only: true  
+      # - type: bind
+      #   source: ./cert/logstash/logstash.pkcs8.key
+      #   target: /usr/share/logstash/certs/logstash.pkcs8.key
+      #   read_only: true    
+      # - type: bind
+      #   source: ./cert/logstash/logstash.crt
+      #   target: /usr/share/logstash/certs/logstash.crt
+      #   read_only: true  
+      # - type: bind
+      #   source: ./cert/logstash/ca.crt
+      #   target: /usr/share/logstash/certs/logstash-ca.crt
+      #   read_only: true      
     ports:
       - 9606:9600
       - 5048:5044 
