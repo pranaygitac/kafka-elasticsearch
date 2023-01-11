@@ -9,6 +9,8 @@ services:
       - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
       - ELASTIC_PASSWORD=pranay
       - xpack.security.enabled=true
+    volumes:
+      - ./temp/:/usr/share/elasticsearch/certs/
     ulimits:
       memlock:
         soft: -1

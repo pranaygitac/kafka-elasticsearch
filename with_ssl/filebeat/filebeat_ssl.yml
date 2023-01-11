@@ -49,7 +49,7 @@ output.logstash:
 
   # The Logstash hosts
   # hosts: ["10.51.96.67:5044", "10.51.96.67:5046", "10.51.96.67:5047"]
-  hosts: ["10.51.96.67:5049"]
+  hosts: ["logstash4.com:5049"]
 
   # Number of workers per Logstash host.
   #worker: 1
@@ -126,7 +126,7 @@ output.logstash:
   #ssl.supported_protocols: [TLSv1.1, TLSv1.2, TLSv1.3]
 
   # List of root certificates for HTTPS server verifications
-  ssl.certificate_authorities: ["/usr/share/filebeat/cert/logstash.crt"]
+  ssl.certificate_authorities: ["/usr/share/filebeat/cert/ca/ca.crt"]
 
   # Certificate for SSL client authentication
   #ssl.certificate: "/usr/share/filebeat/certs/logstash.crt"

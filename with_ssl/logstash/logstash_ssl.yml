@@ -1,0 +1,8 @@
+http.host: "0.0.0.0"
+pipeline.ecs_compatibility: disabled
+node.name: ${LOGSTASH_HOST_NAME}
+# xpack.monitoring.enabled: true
+# xpack.monitoring.elasticsearch.username: logstash_system
+# xpack.monitoring.elasticsearch.password: '<logstash_system_password>'
+# xpack.monitoring.elasticsearch.hosts: [ 'https://es01.com:9200' ]
+# xpack.monitoring.elasticsearch.ssl.certificate_authority: /etc/logstash/config/certs/ca.crt
