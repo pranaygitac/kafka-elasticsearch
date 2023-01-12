@@ -1,27 +1,43 @@
 instances:
   - name: "es01" 
+    ip: 
+      - "10.51.96.67"
     dns: 
       - "es01.com"
   - name: "es02" 
+    ip: 
+      - "10.51.96.67"
     dns: 
       - "es02.com"
   - name: "es03" 
+    ip: 
+      - "10.51.96.67"
     dns: 
       - "es03.com"
   - name: "kib01" 
+    ip: 
+      - "10.51.96.67"
     dns: 
       - "kib01.com"
   - name: "logstash4" 
+    ip: 
+      - "10.51.96.67"
     dns: 
       - "logstash4.com"
   - name: "logstash5" 
+    ip: 
+      - "10.51.96.67"
     dns: 
       - "logstash5.com"
   - name: "metricbeat1" 
+    ip: 
+      - "10.51.96.67"
     dns: 
       - "metricbeat1.com"
   - name: "filebeat1" 
+    ip: 
+      - "10.51.96.67"
     dns: 
-      - "filebeat1.com"
+      - "filbeat1.com"
   
 

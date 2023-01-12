@@ -1,0 +1,13 @@
+instances:
+  - name: "logstash4" 
+    ip: 
+      - "10.51.96.67"
+    dns: 
+      - "logstash4.com"
+  - name: "logstash5" 
+    ip: 
+      - "10.51.96.67"
+    dns: 
+      - "logstash5.com"
+  
+
