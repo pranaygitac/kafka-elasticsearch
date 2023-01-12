@@ -1,3 +1,5 @@
+#https://www.elastic.co/blog/configuring-ssl-tls-and-https-to-secure-elasticsearch-kibana-beats-and-logstash
+
 bin/elasticsearch-certutil ca --pem
 
 unzip certs.zip -d temp
